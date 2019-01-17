@@ -26,7 +26,7 @@
               cidr_ip: 0.0.0.0/0
         register: basic_firewall
 
-      - name: Launch the new EC2 Instance
+      - name: Launch the new EC2 Instances
         local_action: ec2 
                       group={{ security_group }} 
                       instance_type={{ instance_type}} 
@@ -37,7 +37,7 @@
                       count={{count}}
         register: ec2
       
-      - name: add ec2 instance to a temporary inventory
+      - name: add ec2 instances to a temporary inventory
         add_host: name={{ item.public_ip }} groups=debijenkorf-new
         with_items: "{{ ec2.instances }}"
       
@@ -45,14 +45,14 @@
         local_action: lineinfile 
                       dest="./hosts" 
                       regexp={{ item.public_ip }} 
-                      insertafter="[giropops-k8s]" line={{ item.public_ip }}
+                      insertafter="[giropopsKubernetes]" line={{ item.public_ip }}
         with_items: "{{ ec2.instances }}"
 
       - name: Add the private IP of newly created EC2 instance into inventory 
         local_action: lineinfile 
                       dest="./hosts" 
                       regexp={{ item.private_ip }} 
-                      insertafter="[giropops-k8s]" line={{ item.private_ip }}
+                      insertafter="[giropopsKubernetes]" line={{ item.private_ip }}
         with_items: "{{ ec2.instances }}"
 
       - name: Wait for SSH
@@ -71,4 +71,4 @@
         with_items: "{{ ec2.instances }}"
         args:
           tags:
-            Name: giropops-k8s    
+            Name: giropopsKubernetes    
