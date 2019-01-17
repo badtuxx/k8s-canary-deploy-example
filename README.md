@@ -32,15 +32,23 @@ To create the instance is needed that you set two environment variables, AWS_SEC
 ```
 export AWS_ACCESS_KEY_ID="SHDJSJHDJBNTTS"
 export AWS_SECRET_ACCESS_KEY="hSs8s8282kkdbJzUdddd/ss/o+ser"
+```
 
 Install PIP:
+
+```
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
+```
 
 Install boto3 and ansible:
+
+```
 pip install ansible
 pip install boto3
 ```
+
+You need also have a key pair file, for example my-key-pair.pem, that is used to connect into your AWS instances.
 
 ### Installing
 
@@ -54,6 +62,23 @@ Access the playbook directory:
 
 ```
 cd k8s-canary-deploy-example/provisioning-playbook/
+```
+
+Open the file roles/common/vars/main.yml, and edit any option that you like, for example, the name of your key pair file from AWS.
+
+```
+instance_type: t2.medium #type of instance
+security_group: giropops-cluster #name of security group that will be created
+image: ami-0d2505740b82f7948 #ami Ubuntu 18.04 TLS official
+keypair: my-key-pair.pem #your key pair file
+region: us-east-1 # region that will be created the instances
+count: 3 #number of instances
+```
+
+Load your key pair "my-key-pair.pem" that you specified in the in the var file using ssh-keyscan.
+
+```
+ssh-add path/of/my-key-pair.pem
 ```
 
 Execute the playbook:

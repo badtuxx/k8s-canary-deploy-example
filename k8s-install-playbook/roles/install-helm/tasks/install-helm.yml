@@ -20,4 +20,4 @@
 
 - name: Waiting tiller pod 
   pause:
-    minutes: 1
+    minutes: 2

@@ -19,6 +19,16 @@ spec:
         env:
         - name: VERSION
           value: "2.0.0"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
         ports:
         - containerPort: 80
         - containerPort: 32111

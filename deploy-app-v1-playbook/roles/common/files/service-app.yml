@@ -8,7 +8,6 @@ metadata:
   name: giropops
   namespace: default
 spec:
-  clusterIP: 10.105.115.221
   externalTrafficPolicy: Cluster
   ports:
   - nodePort: 32222
