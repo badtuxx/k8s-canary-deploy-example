@@ -1,0 +1,23 @@
+- name: Copying yml files to the host
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: 'app-v2.yml', dest: '/opt/giropops/app-v2.yml' }
+    - { src: 'app-v1.yml', dest: '/opt/giropops/app-v1.yml' }
+
+  register: copying_register
+
+- name: Deploy new version of Giropops App deployment
+  shell: kubectl apply -f /opt/giropops/app-v2.yml
+  register: deployment_register
+
+- name: Scale down old version of Giropops App deployment
+  shell: kubectl apply -f /opt/giropops/app-v1.yml
+  register: deployment_register
+
+- name: The old version of Giropops App deployment will be removed in two minutes
+  pause:
+    minutes: 2
+
+- name: Delete old version of Giropops App deployment
+  shell: kubectl delete -f /opt/giropops/app-v1.yml
+  register: deployment_deleted_register

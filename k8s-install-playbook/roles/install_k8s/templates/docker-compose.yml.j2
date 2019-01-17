@@ -1,0 +1,23 @@
+version: "3"
+services:
+  mysql:
+    image: mariadb:10.2.14
+    ports:
+    - 3306:3306
+    volumes:
+    - data-volume:/var/lib/mysql
+    - /opt/eriks/config/my.cnf:/etc/mysql/my.cnf
+    
+    environment:
+    - MYSQL_USER={{ mysql_user }}
+    - MYSQL_PASSWORD={{ mysql_password }}
+    - MYSQL_ROOT_PASSWORD={{ mysql_root_password }}
+    - MYSQL_DATABASE=db
+    
+volumes:
+  data-volume:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/opt/eriks/data'

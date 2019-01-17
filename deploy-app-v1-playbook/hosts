@@ -1,0 +1,7 @@
+[k8s-master]
+
+[k8s-workers]
+
+[k8s-workers:vars]
+K8S_MASTER_NODE_IP=IP_INTERNAL-NODE1
+K8S_API_SERCURE_PORT=6443

@@ -1,0 +1,7 @@
+- name: Install Prometheus
+  shell: helm install {{ deploy_prometheus }}
+  register: prometheus_result
+
+- name: Install Grafana
+  shell: helm install {{ deploy_grafana }}
+  register: grafana_result

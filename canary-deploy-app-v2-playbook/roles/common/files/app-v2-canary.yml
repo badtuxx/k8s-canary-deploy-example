@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: giropops-v2
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: giropops
+        version: "2.0.0"
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "32111"
+    spec:
+      containers:
+      - name: giropops
+        image: linuxtips/nginx-prometheus-exporter:2.0.0
+        env:
+        - name: VERSION
+          value: "2.0.0"
+        ports:
+        - containerPort: 80
+        - containerPort: 32111

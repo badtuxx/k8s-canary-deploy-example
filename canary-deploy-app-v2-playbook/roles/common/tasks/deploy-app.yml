@@ -1,0 +1,9 @@
+- name: Copying yml files to the host
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: 'app-v2-canary.yml', dest: '/opt/giropops/app-v2-canary.yml' }
+  register: copying_register
+
+- name: Deploy Giropops App deployment
+  shell: kubectl create -f /opt/giropops/app-v2-canary.yml
+  register: deployment_register

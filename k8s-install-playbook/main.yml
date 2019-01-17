@@ -1,0 +1,29 @@
+---
+- hosts: all
+  become: yes
+  user: ubuntu
+  gather_facts: no
+  pre_tasks:
+  - name: 'install python'
+    raw: 'apt-get -y install python'
+  roles:
+  - install_k8s
+
+- hosts: k8s-master
+  become: yes
+  user: ubuntu
+  roles:
+  - create-cluster
+
+- hosts: k8s-workers
+  become: yes
+  user: ubuntu
+  roles:
+  - join-workers
+
+
+- hosts: k8s-master
+  become: yes
+  user: ubuntu
+  roles:
+  - install-helm

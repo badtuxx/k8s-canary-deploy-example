@@ -1,0 +1,23 @@
+- name: Install helm via snap
+  shell: snap install helm --classic
+  register: helm_result
+
+- name: Helm init
+  shell: helm init
+  register: helm_init_result
+
+- name: Create service account to tiller
+  shell: kubectl create serviceaccount --namespace=kube-system tiller
+  register: tiller_result
+
+- name: Create clusterrolebinding for tiller
+  shell: kubectl create clusterrolebinding tiller-cluster-role --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+  register: clusterrolebinding_result
+
+- name: Apply patch to tiller-deploy
+  shell: kubectl patch deployments -n kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+  register: patch_result
+
+- name: Waiting tiller pod 
+  pause:
+    minutes: 1
