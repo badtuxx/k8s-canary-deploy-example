@@ -21,7 +21,8 @@ Using canary deployment, you can deploy a new version of your app without downti
 
 Look an example of a dashboard with all requests to the app during deploy of the new version.
 
-IMAGEHERE
+![Canary Deployment](images/dash.png)
+
 
 ### Prerequisites
 
