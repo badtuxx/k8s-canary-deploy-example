@@ -4,6 +4,10 @@ Only to show how we can use canary deployment using only default components of K
 
 Using Ansible + AWS + Docker + Kubernetes + Helm + Grafana + Prometheus and one demo-app running OpenResty + Nginx with LUA script to expose metrics to Prometheus.
 
+
+[![HOWTO](http://img.youtube.com/vi/CTvsdWZrAW0/0.jpg)](https://youtu.be/CTvsdWZrAW0 "Kubernetes Canary Deployment Example")
+
+
 These playbooks will do:
 - Install 03 Ubuntu instances EC2
 - Install Docker all nodes
