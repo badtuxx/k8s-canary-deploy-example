@@ -196,7 +196,7 @@ Giropops App - Version 1.0.0
 
 Let's keep the app version 1.0.0 running for 15 minutes, only collect data enough to our Grafana dashboard, like this:
 
-![Deploy app version 1.0.0](images/dashboard-1.png)
+![Deploy app version 1.0.0](images/dash-1.png)
 
 
 Now, let's deploy the canary deployment of app version 2.0.0. In this example, we have ten replicas running the version 1.0.0, so, we need to deploy the canary deployment that will represent around 10% of the number of replicas of the app. Now we will have ten replicas running the version 1.0.0 e only one replica running 2.0.0.
@@ -216,7 +216,7 @@ ansible-playbook -i hosts main.yml
 
 Let's keep the app both versions running for 15 minutes, only to collect more data to our Grafana dashboard.
 
-IMAGEGRAFANA-CANARY
+![Canary app version 2.0.0](images/dash-2.png)
 
 
 Ok, everything is right and working with our new version. Now, we want to replace entire the version 1.0.0 by the version 2.0.0.
@@ -233,6 +233,12 @@ Execute the playbook:
 ```
 ansible-playbook -i hosts main.yml
 ```
+
+
+![Deploy app version 2.0.0](images/dash-3.png)
+
+![Deploy app version 2.0.0](images/dash-3.1.png)
+
 
 Great! Now we have the new version running in production and the best part, using canary deployment to prevent downtime of our app.
 
