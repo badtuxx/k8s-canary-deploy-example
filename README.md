@@ -6,6 +6,7 @@ Using Ansible + AWS + Docker + Kubernetes + Helm + Grafana + Prometheus and one 
 
 
 [![HOWTO](http://img.youtube.com/vi/CTvsdWZrAW0/0.jpg)](https://youtu.be/CTvsdWZrAW0 "Kubernetes Canary Deployment Example")
+
 https://www.youtube.com/watch?v=CTvsdWZrAW0
 
 These playbooks will do:
