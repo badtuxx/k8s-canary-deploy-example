@@ -196,7 +196,7 @@ Giropops App - Version 1.0.0
 
 Let's keep the app version 1.0.0 running for 15 minutes, only collect data enough to our Grafana dashboard, like this:
 
-IMAGEGRAFANA-APP1
+![Deploy app version 1.0.0](images/dashboard-1.png)
 
 
 Now, let's deploy the canary deployment of app version 2.0.0. In this example, we have ten replicas running the version 1.0.0, so, we need to deploy the canary deployment that will represent around 10% of the number of replicas of the app. Now we will have ten replicas running the version 1.0.0 e only one replica running 2.0.0.
