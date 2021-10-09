@@ -1,9 +1,13 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: giropops-v1
 spec:
   replicas: 10
+  selector
+    matchLabels:
+      app: giropops
+      version: "1.0.0"
   template:
     metadata:
       labels:
