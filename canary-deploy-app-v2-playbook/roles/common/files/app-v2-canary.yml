@@ -4,6 +4,9 @@ metadata:
   name: giropops-v2
 spec:
   replicas: 1
+  selector:
+    matchLabels: 
+      app: giropops
   template:
     metadata:
       labels:
